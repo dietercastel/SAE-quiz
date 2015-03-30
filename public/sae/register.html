@@ -1,0 +1,13 @@
+<div id="register">
+		<h2>Register</h2>
+		Register here:
+		<form id="regform" ng-submit="submit()">
+				Username: <input type="text" name="name" ng-model="regForm.name"><br>
+				Password: <input id="regPassword" type="password" name="password" ng-model="regForm.password"><br>
+				Password Repeat: <input id="regPassword2" type="password" name="password2" ng-model="regForm.password2"><br>
+				First Name: <input type="text" name="firstname" ng-model="regForm.firstname"><br>
+				Last Name: <input type="text" name="lastname" ng-model="regForm.lastname"><br>
+				<div id="regError" class="hidden">Passwords do not match.</div>
+				<input name="submitReg" value="Submit" type="submit"><br>
+		</form>
+</div>

@@ -1,0 +1,23 @@
+<h2>The Sec-Angular-Express Quiz</h2>
+Current user:<b><%= user %></b>,<br>
+Fill in the answer with the correct syntax!
+
+<div id=quiz>
+
+<h3 id="score">Score:{{score}}</h3>
+<h4 id="highscore">Highscore:{{highscore}}</h4>
+
+
+<div id="question">{{questionNb}}) {{question}}</div>
+<form id="answerform" ng-submit="submit()">
+		<input id="answerField" name="answer" value="<your answer here>" type="text" ng-model="answerform.answer"><br>
+		<input name="answer" value="Answer" type="submit"><br>
+</form>
+
+<div id="highscoretable"></div>
+
+<br>
+<br>
+<br>
+<button id="logoutBut" value="Logout" ng-click="logout()">logout</button>
+</div>
