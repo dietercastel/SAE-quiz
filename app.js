@@ -15,12 +15,14 @@ var csoptions = {
 };
 var cs = require('client-session')("mysuper9001secretkeyisthis111",csoptions);
 var nano = require('nano')('http://localhost:5984');
-
-
-var sae = require('../Sec-Angular-Express/SAE')(__dirname);
 //Test sae
-sae.configure(app);
-console.log(sae.cspPath);
+var saeoptions = {
+	reportRoute: '/reporting',
+	proxyPrefix: '/sae',
+	projectPath: __dirname
+};
+var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
+sae.configure(app,bodyParser);
 
 
 //Used to switch between serving regular js and angular.js on the client. 
