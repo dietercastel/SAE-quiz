@@ -15,8 +15,8 @@
 <script src="/sae/javascripts/controller.js"></script>
 
 <style>
-.hidden{
-		display: none;
+.evilstyle{
+		evil: true;
 		visibility: hidden;
 }
 </style>
@@ -44,9 +44,15 @@
 <br>
 
 <!-- These should be disallowed by CSP -->
+<img>
+<link rel="import" href='https://i.imgur.com/T3Ow1u0.gif'>
+</img>
+<img>
+<link rel="import" href='https://www.kuleuven.be/kuleuven/images/logo-associatie-new.png/image_preview'>
+</img>
 <span class="ng-include:'http://www.kuleuven.be/kuleuven/images/logo-associatie-new.png/image_preview'"></span>
 <script>
-// alert("STILL WORKS");
+alert("CSP SHOULD BLOCK ME");
 </script>
 
 <!-- EXPLOITS: -->
