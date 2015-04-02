@@ -37,7 +37,7 @@ router.put('/add', function(req, res) {
 });
 
 router.post('/login', function(req, res) {
-		console.log(req);
+		// console.log(req);
 		//get middelware refs
 		cs=req.cs;
 		nano=req.nano;
@@ -55,6 +55,7 @@ router.post('/login', function(req, res) {
 				req.csession["score"] = 0;
 				req.csession["questionNb"] = 0;
 				cs.csset(req, res);
+				res.setToken();
 				res.send({authenticated:true, user: auth.name, url:"quiz"});
 		});
 });

@@ -7,14 +7,15 @@ router.all('/*', function(req, res, next) {
 		//get middelware refs
 		cs = req.cs;
 		cs.csget(req, res);
-		if(!req.csession["authenticated"]){
+		console.log("valtoken == " + req.valtoken());
+		if(req.csession["authenticated"] && req.valToken()){
+				next();
+		}else{
 				res.writeHead(302, {
 						'Location': "/" + req.quizType
 				});
 				res.end();
 				return;
-		}else{
-				next();
 		}
 });
 
