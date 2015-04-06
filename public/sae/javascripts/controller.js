@@ -176,6 +176,7 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 		$scope.logout = function(){
 				//only possible because it's not httpOnly
 				delete_cookie("csession");
+				delete_cookie("XSRF-TOKEN");
 				$location.path("/");
 		};
 		//execute getHighscore to fetch it initially.

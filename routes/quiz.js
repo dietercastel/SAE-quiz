@@ -2,21 +2,30 @@ var express = require('express');
 var router = express.Router();
 var nbOfQuestions = 2;
 
+function failedAuth(res){
+				res.writeHead(403, {
+						'Location': "/" + req.quizType + "/login"
+				});
+				res.end();
+				return;
+}
+
+function validAuth(req, next){
+	req.next();	
+	return;
+}
+
 /*Check for authentication on ALL http verbs/routes*/
 router.all('/*', function(req, res, next) {
 		//get middelware refs
 		cs = req.cs;
 		cs.csget(req, res);
-		console.log("valtoken == " + req.valtoken());
-		if(req.csession["authenticated"] && req.valToken()){
-				next();
-		}else{
-				res.writeHead(302, {
-						'Location': "/" + req.quizType
-				});
-				res.end();
-				return;
+		// console.log("valtoken == " + req.valToken());
+		if(req.csession["authenticated"]){
+			req.valToken(res, validAuth, failedAuth);
+			return;
 		}
+		failedAuth(res);
 });
 
 /* GET logged in quiz page. */

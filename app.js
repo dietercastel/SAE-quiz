@@ -19,6 +19,7 @@ var nano = require('nano')('http://localhost:5984');
 var saeoptions = {
 	reportRoute: '/reporting',
 	proxyPrefix: '/sae',
+	reportOnly: true,
 	projectPath: __dirname
 };
 var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
