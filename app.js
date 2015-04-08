@@ -7,23 +7,39 @@ var users = require('./routes/users');
 var highscores = require('./routes/highscores');
 var quiz = require('./routes/quiz'); 
 var app = express();
-var csoptions = {
-        path:'/',  
-        maxAge:3600, 
-        secure:false, 
-        httpOnly:false //currently NOT httpOnly!!!
-};
-var cs = require('client-session')("mysuper9001secretkeyisthis111",csoptions);
+// var csoptions = {
+//         path:'/',  
+//         maxAge:3600, 
+//         secure:false, 
+//         httpOnly:false //currently NOT httpOnly!!!
+// };
+// var cs = require('client-session')("mysuper9001secretkeyisthis111",csoptions);
 var nano = require('nano')('http://localhost:5984');
 //Test sae
+
+function failedAuth(req,res){
+				res.writeHead(403, {
+						'Location': "/login"
+				});
+				res.end();
+				return;
+}
+
 var saeoptions = {
+	//REQUIRED:
+	projectPath: __dirname,
+	keyPath: "/vagrant/csession.key",
+	failedAuthFunction : failedAuth,
+	//OPTIONAL
 	reportRoute: '/reporting',
 	proxyPrefix: '/sae',
+	excludedAuthRoutes : ["/users/login","/users/logout","/highscores"],
+	//Not advised but for testing.
 	reportOnly: true,
-	projectPath: __dirname
+	httpsOnlyCookie: false
 };
 var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
-sae.configure(app,bodyParser);
+// sae.configure(app,bodyParser);
 
 
 //Used to switch between serving regular js and angular.js on the client. 
@@ -31,7 +47,7 @@ sae.configure(app,bodyParser);
 var clientSide = process.argv[2];
 
 app.use(function(req, res, next){
-        req.cs = cs;
+        // req.cs = cs;
         req.nano = nano;
         req.quizType = clientSide; 
         next();
@@ -66,6 +82,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public/'+clientSide)));
+
+//Placement matters here!!!
+//Serving static files is without any auth so should be handled before SAE.
+sae.configure(app,bodyParser);
 
 app.use('/users', users);
 app.use('/highscores', highscores);
