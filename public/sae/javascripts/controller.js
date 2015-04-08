@@ -12,21 +12,22 @@ quizApp.factory('userDataService', function(){
 quizApp.config(function($routeProvider) {
 		$routeProvider
 		.when('/', {
-				templateUrl : '/sae/welcome.html',
+				templateUrl : '/sae/html/welcome.html',
 		})
 		.when('/login', {
-				templateUrl : '/sae/login.html',
+				templateUrl : '/sae/html/login.html',
 				controller  : 'loginController'
 		})
 		.when('/register', {
-				templateUrl : '/sae/register.html',
+				templateUrl : '/sae/html/register.html',
 				controller  : 'regController'
 		})
 		.when('/highscores', {
-				templateUrl : '/sae/highscores.html',
+				templateUrl : '/sae/html/highscores.html',
 				controller  : 'hsController'
 		})
 		.when('/quiz', {
+				// templateUrl : '/sae/html/quiz', gives strange memory leak
 				templateUrl : '/sae/quiz',
 				controller  : 'quizController'
 		});

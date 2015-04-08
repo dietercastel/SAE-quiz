@@ -33,13 +33,22 @@ var saeoptions = {
 	//OPTIONAL
 	reportRoute: '/reporting',
 	proxyPrefix: '/sae',
-	excludedAuthRoutes : ["/users/login","/users/logout","/highscores"],
+	excludedAuthRoutes : ["/users/login","/users/logout","/highscores","/images","/javascripts","/stylesheets","/html"],
 	//Not advised but for testing.
 	reportOnly: true,
 	httpsOnlyCookie: false
 };
 var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
-// sae.configure(app,bodyParser);
+
+// app.use(/^(?!(\/){0,2}$|(\/){0,2}users).+/i, function(res, req, next){
+// 	console.log("This works");
+// });
+//
+// app.use("/", function(res, req, next){
+// 	console.log("THIS IS THE /");
+// });
+
+sae.configure(app,bodyParser);
 
 
 //Used to switch between serving regular js and angular.js on the client. 
@@ -85,11 +94,15 @@ app.use(express.static(path.join(__dirname, 'public/'+clientSide)));
 
 //Placement matters here!!!
 //Serving static files is without any auth so should be handled before SAE.
-sae.configure(app,bodyParser);
+// sae.configure(app,bodyParser);
 
 app.use('/users', users);
 app.use('/highscores', highscores);
 app.use('/quiz', quiz);
+
+app.use('/', function(req, res, next){
+	res.render('index', {});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
