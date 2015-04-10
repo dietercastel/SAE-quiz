@@ -18,10 +18,7 @@ var nano = require('nano')('http://localhost:5984');
 //Test sae
 
 function failedAuth(req,res){
-				res.writeHead(403, {
-						'Location': "/login"
-				});
-				res.end();
+				res.redirect("/sae#/login");
 				return;
 }
 

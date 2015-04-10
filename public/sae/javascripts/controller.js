@@ -150,7 +150,7 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 						$http({
 								method: 'PUT',
 								url: "/sae/quiz",
-								data: $scope.answerform,
+								data: $scope.answerform
 						})
 						.success(function(data, status){
 								if(data.ok){
@@ -176,9 +176,20 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 		};
 		$scope.logout = function(){
 				//only possible because it's not httpOnly
-				delete_cookie("csession");
-				delete_cookie("XSRF-TOKEN");
-				$location.path("/");
+				$http({ 
+					method: 'GET',
+					url: '/sae/users/logout'
+				})
+				.success(function(data,status){
+					console.log(data);
+					$location.path("/");
+				}).
+				error(function(data, status){
+					console.log("Try client-side cookie deletion");
+					delete_cookie("csession");
+					delete_cookie("XSRF-TOKEN");
+					$location.path("/");
+				});
 		};
 		//execute getHighscore to fetch it initially.
 		$scope.getHighscore();
