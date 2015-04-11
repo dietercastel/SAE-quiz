@@ -38,10 +38,6 @@ router.put('/add', function(req, res) {
 
 router.post('/login', function(req, res) {
 		//get middelware refs
-		
-		// cs=req.cs;
-		
-
 		nano=req.nano;
 		auth=req.body;
 		callback = console.log;
@@ -50,41 +46,16 @@ router.post('/login', function(req, res) {
 						res.send({authenticated:false});
 						return callback(err);
 				}
-				// cs.csget(req, res);
-
-				// req.csession["questionNb"] = 0;
-				// req.csession["score"] = 0;
-				// req.csession["user"] = auth.name;
 				newSessionData = {};
 				newSessionData["questionNb"] = 0;
 				newSessionData["score"] = 0;
 				newSessionData["user"] = auth.name;
 
-				// //SUCCES
-				// req.csession["authenticated"] = true;
-				// cs.csset(req, res);
-				// //Set anti-XSRF token with SAE
-				// res.setToken();
-				// res.send({authenticated:true, user: auth.name, url:"quiz"});
 				res.sae.sendNewSession(req, res, newSessionData, {authenticated:true, user: auth.name, url:"quiz"});
 		});
 });
 
 router.get('/logout', function(req, res){
-	// cs=req.sae.cs;
-	// cs.csget(req, res);
-	// //Probably not necessary to unset this.
-	// req.csession["authenticated"] = false;
-	// delete req.csession.user;
-	// delete req.csession.score;
-	// delete req.csession.questionNb;
-	// //Expire the cookie in 1 second.
-	// //NOTE: 0 would result in cookie deletion on closing the browser.
-	// cs.opt.maxAge = 1;
-	// cs.csset(req, res);
-	// res.send({authenticated:false, url:"/"+req.quizType});
-	// //Reset maxAge since this is a global option.
-	// cs.opt.maxAge = 3600;
 	res.sae.sendDestroySession(req,res,{authenticated:false, url:"/"+req.quizType});
 });
 
