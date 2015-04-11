@@ -17,10 +17,6 @@ var app = express();
 var nano = require('nano')('http://localhost:5984');
 //Test sae
 
-function failedAuth(req,res){
-				res.redirect("/sae#/login");
-				return;
-}
 
 var saeoptions = {
 	//REQUIRED:
@@ -37,6 +33,10 @@ var saeoptions = {
 };
 var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
 
+function failedAuth(req,res){
+				res.redirect("/sae#/login");
+				return;
+}
 // app.use(/^(?!(\/){0,2}$|(\/){0,2}users).+/i, function(res, req, next){
 // 	console.log("This works");
 // });
@@ -45,7 +45,8 @@ var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
 // 	console.log("THIS IS THE /");
 // });
 
-sae.configure(app,bodyParser);
+// sae.configure(app,bodyParser);
+sae.configure(app);
 
 
 //Used to switch between serving regular js and angular.js on the client. 

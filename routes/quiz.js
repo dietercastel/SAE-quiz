@@ -31,33 +31,6 @@ function getQuestionRecords(questionNb, quizdb, callback){
 		});
 }
 
-// function failedAuth(res,quizType){
-// 				res.writeHead(403, {
-// 						'Location': "/" + quizType + "/login"
-// 				});
-// 				res.end();
-// 				return;
-// }
-//
-// function validAuth(req, next){
-// 	req.next();	
-// 	return;
-// }
-//
-// #<{(|Check for authentication on ALL http verbs/routes|)}>#
-// router.all('#<{(|', function(req, res, next) {
-// 		//get middelware refs
-// 		cs = req.cs;
-// 		// cs.csget(req, res);
-// 		// console.log("valtoken == " + req.valToken());
-// 		console.log(req.csession);
-// 		if(req.csession["authenticated"]){
-// 			req.valToken(res, validAuth, failedAuth);
-// 			return;
-// 		}
-// 		failedAuth(res,req.quizType);
-// });
-
 /* GET logged in quiz page. */
 router.get('/', function(req, res){
 		//get middelware refs
