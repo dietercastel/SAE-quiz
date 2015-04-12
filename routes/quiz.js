@@ -38,9 +38,7 @@ router.get('/', function(req, res){
 		// cs.csget(req, res);
 		//AUTH is handled in all() vide supra
 		console.log("quiz csession:" + util.inspect(req.csession));
-		res.render('quiz', {
-			user: req.csession["user"]
-		});
+		res.render('quiz', {});
 });
 
 router.put('/', function(req, res) {

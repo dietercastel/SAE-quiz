@@ -26,7 +26,7 @@ var saeoptions = {
 	//OPTIONAL
 	reportRoute: '/reporting',
 	proxyPrefix: '/sae',
-	excludedAuthRoutes : ["/users/login","/users/logout","/highscores","/images","/javascripts","/stylesheets","/html"],
+	excludedAuthRoutes : ["/users/login","/users/logout","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
 	//Not advised but for testing.
 	reportOnly: true,
 	httpsOnlyCookie: false
@@ -88,6 +88,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'protected/'+clientSide)));
 app.use(express.static(path.join(__dirname, 'public/'+clientSide)));
 
 //Placement matters here!!!
@@ -99,7 +100,7 @@ app.use('/highscores', highscores);
 app.use('/quiz', quiz);
 
 app.use('/', function(req, res, next){
-	res.render('index', {});
+	res.sendFile(path.join(__dirname, 'public',clientSide,"index.html"))
 });
 
 // catch 404 and forward to error handler

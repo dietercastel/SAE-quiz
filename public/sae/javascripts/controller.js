@@ -28,7 +28,7 @@ quizApp.config(function($routeProvider) {
 		})
 		.when('/quiz', {
 				// templateUrl : '/sae/html/quiz', gives strange memory leak
-				templateUrl : '/sae/quiz',
+				templateUrl : '/sae/quiz.html',
 				controller  : 'quizController'
 		});
 });
@@ -102,6 +102,7 @@ quizApp.controller('loginController', function($scope, $http, $location, userDat
 });
 
 quizApp.controller('quizController', function($scope, $http, $location, userDataService){
+		$scope.user = userDataService.user;
 		$scope.question = "What is the most common 6-letter placeholder name in programming languages?";
 		$scope.questionNb = 0;
 		$scope.score = 0;
