@@ -103,6 +103,9 @@ app.use('/', function(req, res, next){
 	res.sendFile(path.join(__dirname, 'public',clientSide,"index.html"))
 });
 
+
+sae.handleErrors(app);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
         var err = new Error('Not Found');
