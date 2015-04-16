@@ -178,7 +178,7 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 		$scope.logout = function(){
 				//only possible because it's not httpOnly
 				$http({ 
-					method: 'GET',
+					method: 'POST',
 					url: '/sae/users/logout'
 				})
 				.success(function(data,status){

@@ -55,7 +55,7 @@ router.post('/login', function(req, res) {
 		});
 });
 
-router.get('/logout', function(req, res){
+router.post('/logout', function(req, res){
 	res.sae.sendDestroySession(req,res,{authenticated:false, url:"/"+req.quizType});
 });
 
