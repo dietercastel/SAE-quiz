@@ -87,6 +87,7 @@ quizApp.controller('loginController', function($scope, $http, $location, userDat
 						})
 						.success(function(data, status){
 								if(data.authenticated){
+										userDataService.authenticated = true;
 										userDataService.user = data.user; 
 										$location.path(data.url);
 								} else {
@@ -102,6 +103,10 @@ quizApp.controller('loginController', function($scope, $http, $location, userDat
 });
 
 quizApp.controller('quizController', function($scope, $http, $location, userDataService){
+		if(userDataService.authenticated === undefined || !userDataService.authenticated){
+			$location.path("/login");
+			return;
+		};
 		$scope.user = userDataService.user;
 		$scope.question = "What is the most common 6-letter placeholder name in programming languages?";
 		$scope.questionNb = 0;
@@ -183,6 +188,7 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 				})
 				.success(function(data,status){
 					console.log(data);
+					userDataService.authenticated = false;
 					$location.path("/");
 				}).
 				error(function(data, status){
