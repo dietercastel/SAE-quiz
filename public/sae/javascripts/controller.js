@@ -168,7 +168,6 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 										$scope.score = data.score;	
 										$scope.questionNb = data.questionNb;	
 										$scope.question = data.question;	
-										$scope.answerform.answer = "<your answer here>";
 										if(lastScore > userDataService.highscore){
 												$scope.updateHighscore(lastScore);
 										}
@@ -181,7 +180,6 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 				}
 		};
 		$scope.logout = function(){
-				//only possible because it's not httpOnly
 				$http({ 
 					method: 'POST',
 					url: '/sae/users/logout'
@@ -193,6 +191,7 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 				}).
 				error(function(data, status){
 					console.log("Try client-side cookie deletion");
+					//only possible if they are not httpOnly
 					delete_cookie("csession");
 					delete_cookie("XSRF-TOKEN");
 					$location.path("/");

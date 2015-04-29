@@ -26,7 +26,7 @@ var saeoptions = {
 	//OPTIONAL
 	reportRoute: '/reporting',
 	proxyPrefix: '/sae',
-	excludedAuthRoutes : ["/users/login","/users/logout","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
+	excludedAuthRoutes : ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
 	//Not advised but for testing.
 	reportOnly: true,
 	httpsOnlyCookie: false
@@ -34,8 +34,8 @@ var saeoptions = {
 var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
 
 function failedAuth(req,res){
-				res.redirect("/sae#/login");
-				return;
+	res.redirect("/sae#/login");
+	return;
 }
 // app.use(/^(?!(\/){0,2}$|(\/){0,2}users).+/i, function(res, req, next){
 // 	console.log("This works");
