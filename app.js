@@ -7,17 +7,8 @@ var users = require('./routes/users');
 var highscores = require('./routes/highscores');
 var quiz = require('./routes/quiz'); 
 var app = express();
-// var csoptions = {
-//         path:'/',  
-//         maxAge:3600, 
-//         secure:false, 
-//         httpOnly:false //currently NOT httpOnly!!!
-// };
-// var cs = require('client-session')("mysuper9001secretkeyisthis111",csoptions);
 var nano = require('nano')('http://localhost:5984');
-//Test sae
-
-
+//SAE config
 var saeoptions = {
 	//REQUIRED:
 	projectPath: __dirname,
@@ -37,19 +28,8 @@ function failedAuth(req,res){
 	res.redirect("/sae#/login");
 	return;
 }
-// app.use(/^(?!(\/){0,2}$|(\/){0,2}users).+/i, function(res, req, next){
-// 	console.log("This works");
-// });
-//
-// app.use("/", function(res, req, next){
-// 	console.log("THIS IS THE /");
-// });
-
-// sae.configure(app,bodyParser);
 sae.configure(app);
 
-
-//Used to switch between serving regular js and angular.js on the client. 
 //SINGLE OPTION "sae"
 var clientSide = process.argv[2];
 
