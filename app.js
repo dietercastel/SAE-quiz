@@ -20,6 +20,9 @@ var saeoptions = {
 	excludedAuthRoutes : ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
 	//Not advised but for testing.
 	reportOnly: true,
+	// sessionLifeTime : 30, 
+	// sessionRefreshTime : 20,
+	// sessionAbsoluteExpiry : 60,
 	httpsOnlyCookie: false
 };
 var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
