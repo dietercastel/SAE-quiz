@@ -23,7 +23,7 @@ var saeoptions = {
 	// sessionLifeTime : 30, 
 	// sessionRefreshTime : 20,
 	// sessionAbsoluteExpiry : 60,
-	httpsOnlyCookie: false
+	secureCookie: false
 };
 function failedAuth(req,res){
 	res.redirect("/sae#/login");
