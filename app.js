@@ -25,12 +25,12 @@ var saeoptions = {
 	// sessionAbsoluteExpiry : 60,
 	httpsOnlyCookie: false
 };
-var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
-
 function failedAuth(req,res){
 	res.redirect("/sae#/login");
 	return;
 }
+
+var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
 sae.configure(app);
 
 //SINGLE OPTION "sae"
