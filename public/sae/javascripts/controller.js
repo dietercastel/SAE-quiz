@@ -113,6 +113,7 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 		$scope.score = 0;
 		$scope.highscore = 0;
 		$scope.answerform ={};
+		$scope.catimg = "https://i.imgur.com/T3Ow1u0.gif";
 		$scope.getHighscore = function(){
 				$http({
 						method: 'GET',

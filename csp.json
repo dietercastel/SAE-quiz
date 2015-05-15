@@ -1,6 +1,5 @@
 {
     "default-src": [
-        "https://i.imgur.com/",
         "https://www.kuleuven.be/",
         "https://maxcdn.bootstrapcdn.com/"
     ],
@@ -10,10 +9,14 @@
         "https://maxcdn.bootstrapcdn.com/"
     ],
     "style-src": [
+        "'self'",
         "https://ajax.googleapis.com/",
         "https://maxcdn.bootstrapcdn.com/"
     ],
     "frame-src": [
+        "'self'"
+    ],
+    "connect-src": [
         "'self'"
     ]
 }
