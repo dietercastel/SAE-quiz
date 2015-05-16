@@ -19,7 +19,7 @@ var saeoptions = {
 	proxyPrefix: '/sae',
 	excludedAuthRoutes : ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
 	//Not advised but for testing.
-	reportOnly: true,
+	cspReportOnly: false,
 	// sessionLifeTime : 30, 
 	// sessionRefreshTime : 20,
 	// sessionAbsoluteExpiry : 60,
