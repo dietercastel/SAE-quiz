@@ -102,7 +102,7 @@ quizApp.controller('loginController', function($scope, $http, $location, userDat
 		};
 });
 
-quizApp.controller('quizController', function($scope, $http, $location, userDataService){
+quizApp.controller('quizController', function($scope, $http, $location, $window, userDataService){
 		if(userDataService.authenticated === undefined || !userDataService.authenticated){
 			$location.path("/login");
 			return;
@@ -113,6 +113,11 @@ quizApp.controller('quizController', function($scope, $http, $location, userData
 		$scope.score = 0;
 		$scope.highscore = 0;
 		$scope.answerform ={};
+		// $scope.redirectform = {};
+		// $scope.redir = function(){
+		// 	$window.location.href = $scope.redirectform.url;
+		// };
+		// $scope.userurl = "javascript:alert('js protocol execution');";
 		$scope.catimg = "https://i.imgur.com/T3Ow1u0.gif";
 		$scope.getHighscore = function(){
 				$http({
