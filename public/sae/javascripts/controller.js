@@ -54,6 +54,11 @@ quizApp.controller('hsController', function($scope, $http, $location){
 	$scope.filterHS = function(hselem){
 		if($scope.queryHS){
 			if(!isNaN(parseFloat($scope.queryHS)) && isFinite($scope.queryHS)){
+				if($scope.queryHS > $scope.resultHS.length){
+					$scope.queryHS = $scope.resultHS.length;	
+				} else if($scope.queryHS < 0) {
+					$scope.queryHS = 10;	
+				}
 				$scope.maxhitHS=$scope.queryHS;
 				return true;
 			} else {
