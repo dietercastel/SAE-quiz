@@ -50,12 +50,17 @@ quizApp.controller('hsController', function($scope, $http, $location){
 				console.log(status);	
 		});
 	};
+	$scope.refreshHS();
 	$scope.filterHS = function(hselem){
-		if(!isNaN(parseFloat($scope.queryHS)) && isFinite($scope.queryHS)){
-			$scope.maxhitHS=$scope.queryHS;
-			return true;
+		if($scope.queryHS){
+			if(!isNaN(parseFloat($scope.queryHS)) && isFinite($scope.queryHS)){
+				$scope.maxhitHS=$scope.queryHS;
+				return true;
+			} else {
+				return hselem.value.name.indexOf($scope.queryHS) >= 0;
+			}
 		} else {
-			return hselem.value.name.indexOf($scope.queryHS) >= 0;
+			return true;	
 		}
 	};
 });
