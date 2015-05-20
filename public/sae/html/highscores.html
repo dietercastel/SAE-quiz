@@ -1,19 +1,21 @@
 <div id="highscores">
-		<h2>Highscores</h2>
-		Search highscores by name or input a number/range to get the top x highscores. <br>
-		Search: 
-		<input id="queryHS" type="text" name="queryHS" ng-model="queryHS" ng-change="submit()"><br>
-		<div id="highscoretable">
-				<h2>{{hitcount}} hits</h2>
-				<table>
-						<thead>highscores</thead>
-						<tbody>
-						<tr ng-repeat="hs in resultHS" ng-show="$index < queryHS">
-								<td>{{$index + 1}}</td>	
-								<td>{{hs.value.name}}</td>	
-								<td>{{hs.value.score}}</td>
-						</tr>
-						</tbody>
-				</table>
-		</div>
+	<h2>Highscores</h2>
+	Search highscores by name or input a number/range to get the top x highscores. <br>
+	Search: 
+	<input id="queryHS" type="text" name="queryHS" ng-model="queryHS">
+	<button id="refreshbut"	name="refreshbut" ng-model="refreshbut" ng-click="refreshHS()">Refresh Highscores</button>
+	<br>
+	<div id="highscoretable">
+		<h2>{{hitcount}} hits (showing {{maxhitHS}})</h2>
+		<table>
+			<thead>highscores</thead>
+			<tbody>
+			<tr ng-repeat="hs in resultHS | filter:filterHS" ng-show="$index < maxhitHS" width="100">
+				<td width="10%">{{$index + 1}}</td>	
+				<td width="60%">{{hs.value.name}}</td>	
+				<td width="30%">{{hs.value.score}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
