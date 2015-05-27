@@ -46,16 +46,17 @@ router.post('/login', function(req, res) {
 			//Failed auth
 			res.send({authenticated:false});
 			console.log(err);
+		} else {
+			newSessionData = {};
+			newSessionData["questionNb"] = 0;
+			newSessionData["score"] = 0;
+			newSessionData["user"] = auth.name;
+			sendData = {};
+			sendData["authenticated"] = true;
+			sendData["user"] = auth.name;
+			sendData["url"] = "quiz";
+			res.sae.sendNewSession(req, res, newSessionData, sendData);
 		}
-		newSessionData = {};
-		newSessionData["questionNb"] = 0;
-		newSessionData["score"] = 0;
-		newSessionData["user"] = auth.name;
-		sendData = {};
-		sendData["authenticated"] = true;
-		sendData["user"] = auth.name;
-		sendData["url"] = "quiz";
-		res.sae.sendNewSession(req, res, newSessionData, sendData);
 	});
 });
 
