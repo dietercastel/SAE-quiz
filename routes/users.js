@@ -46,8 +46,8 @@ router.post('/login', function(req, res) {
 			//Failed auth
 			res.send({authenticated:false});
 			console.log(err);
-		} else {
-			newSessionData = {};
+		} else { //Succes
+			newSessionData = {}; 
 			newSessionData["questionNb"] = 0;
 			newSessionData["score"] = 0;
 			newSessionData["user"] = auth.name;

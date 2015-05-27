@@ -1,4 +1,3 @@
-var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -6,10 +5,11 @@ var bodyParser = require('body-parser');
 var users = require('./routes/users');
 var highscores = require('./routes/highscores');
 var quiz = require('./routes/quiz'); 
-var app = express();
 var nano = require('nano')('http://localhost:5984');
-//SAE config
-var saeoptions = {
+//Other requires ...
+var express = require('express');
+var app = express();
+var opt = { //SAE config
 	//REQUIRED:
 	projectPath: __dirname,
 	keyPath: "/vagrant/csession.key",
@@ -29,9 +29,9 @@ function failedAuth(req,res){
 	res.redirect("/sae#/login");
 	return;
 }
-
-var sae = require('../Sec-Angular-Express/SAE')(saeoptions);
+var sae = require('../Sec-Angular-Express/SAE')(opt);
 sae.configure(app);
+//Other app configuration...
 
 //SINGLE OPTION "sae"
 var clientSide = process.argv[2];
@@ -55,10 +55,6 @@ app.all('*', function(req, res, next) {
 		// Worked after second reload...
 		// res.header("X-EPR","1");
 		
-        // res.header("Content-Security-Policy", "default-src 'self';script-src 'self' https://ajax.googleapis.com https://maxcdn.bootstrapcdn.com;object-src 'none';img-src 'self';media-src 'self';frame-src 'none';font-src 'self' data:;connect-src 'self';style-src 'self' https://ajax.googleapis.com https://maxcdn.bootstrapcdn.com");
-        // res.header("Content-Security-Policy", "default-src 'self';script-src 'self';object-src 'none';img-src 'self';media-src 'self';frame-src 'none';font-src 'self' data:;connect-src 'self';style-src 'self'");
-
-        // res.header("Content-Security-Policy", "script-src 'self';");
         next();
 });
 
@@ -74,10 +70,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'protected/'+clientSide)));
 app.use(express.static(path.join(__dirname, 'public/'+clientSide)));
 
-//Placement matters here!!!
-//Serving static files is without any auth so should be handled before SAE.
-// sae.configure(app,bodyParser);
-
 app.use('/users', users);
 app.use('/highscores', highscores);
 app.use('/quiz', quiz);
@@ -87,7 +79,9 @@ app.use('/', function(req, res, next){
 });
 
 
+//Handle SAE errors.
 sae.handleErrors(app);
+//Other errors ...
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
