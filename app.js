@@ -18,8 +18,8 @@ var opt = { //SAE config
 	reportRoute: '/reporting',
 	proxyPrefix: '/sae',
 	excludedAuthRoutes : ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
-	//Not advised but for testing.
-	cspReportOnly: true,
+	cspReportOnly: true, //Not advised but for testing.
+	logSessionData: logSessionData,
 	// sessionLifeTime : 30, 
 	// sessionRefreshTime : 20,
 	// sessionAbsoluteExpiry : 60,
@@ -32,6 +32,15 @@ function failedAuth(req,res){
 var sae = require('../Sec-Angular-Express/SAE')(opt);
 sae.configure(app);
 //Other app configuration...
+
+function logSessionData(csession){
+	return {
+		"user" : csession.user,
+		"questionNb" : csession.questionNb,
+		"score" : csession.score
+	};
+}
+
 
 //SINGLE OPTION "sae"
 var clientSide = process.argv[2];
