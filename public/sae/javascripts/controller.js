@@ -42,7 +42,7 @@ quizApp.controller('hsController', function($scope, $http, $location){
 		})
 		.success(function(data, status){
 				console.log(data);
-				$scope.resultHS = data
+				$scope.resultHS = data;
 				$scope.hitcount = Object.keys($scope.resultHS).length;
 		}).
 		error(function(data, status){
