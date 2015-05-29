@@ -22,6 +22,7 @@ function getQuestionRecords(questionNb, quizdb, callback){
 						oldQuestion = body.rows[0].value;
 						console.log(params.keys);
 						newQuestion = body.rows[1].value;
+						console.log("#####VIIIIEEEWW#######");
 						callback(oldQuestion, newQuestion);
 						return;
 				} else {
@@ -33,9 +34,6 @@ function getQuestionRecords(questionNb, quizdb, callback){
 
 /* GET logged in quiz page. */
 router.get('/', function(req, res){
-		//get middelware refs
-		// cs = req.cs;
-		// cs.csget(req, res);
 		//AUTH is handled in all() vide supra
 		console.log("quiz csession:" + util.inspect(req.csession));
 		res.render('quiz', {});
@@ -45,8 +43,6 @@ router.put('/', function(req, res) {
 		//get middelware refs
 		quizdb = req.nano.use('quiz');
 		quizType = req.quizType;
-		// cs = req.cs;
-		// cs.csget(req, res);
 
 		//AUTH is handled in all() vide supra
 		user = req.csession["user"];
@@ -70,7 +66,6 @@ router.put('/', function(req, res) {
 						//reset session data to replay
 						req.csession["questionNb"] = 0;
 						req.csession["score"] = 0;
-						// cs.csset(req, res);
 						resData.ok = true;
 						resData.finished = true;
 						resData.finalScore = score;
@@ -81,7 +76,13 @@ router.put('/', function(req, res) {
 						//Update session
 						req.csession["questionNb"] = ++questionNb;
 						req.csession["score"] = score;
-						// cs.csset(req, res);
+						//Cookie size test.
+						// function repeatString(str, times) { 
+						// 	var s = ''; 
+						// 	while (s.length < times) s += str; 
+						// 	return s; 
+						// } 
+						// req.csession["longstring"] = repeatString("A",2700);
 						resData.ok = true;
 						resData.finished= false;
 						resData.score = score;
