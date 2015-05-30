@@ -17,7 +17,7 @@ var opt = { //SAE config
 	//OPTIONAL
 	reportRoute: '/reporting',
 	proxyPrefix: '/sae',
-	excludedAuthRoutes : ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
+	excludeSessionAuthRoutes: ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
 	cspReportOnly: true, //Not advised but for testing.
 	logSessionData: logSessionData,
 	// sessionLifeTime : 30, 
