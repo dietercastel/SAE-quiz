@@ -19,11 +19,11 @@ var opt = { //SAE config
 	proxyPrefix: '/sae',
 	excludeSessionAuthRoutes: ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
 	cspReportOnly: true, //Not advised but for testing.
-	logSessionData: logSessionData,
+	secureCookie: false, //set true to test unsecure socket error
+	logSessionData: logSessionData
 	// sessionLifeTime : 30, 
 	// sessionRefreshTime : 20,
 	// sessionAbsoluteExpiry : 60,
-	secureCookie: false
 };
 function failedAuth(req,res){
 	res.redirect("/sae#/login");
