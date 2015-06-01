@@ -20,6 +20,8 @@ var opt = { //SAE config
 	excludeSessionAuthRoutes: ["/users/login","/users/add","/highscores","/images","/javascripts","/stylesheets","/html"],
 	cspReportOnly: true, //Not advised but for testing.
 	secureCookie: false, //set true to test unsecure socket error
+	useLocalhostAsSelf : false,
+	useNameAsSelf : "127.0.0.1",
 	logSessionData: logSessionData
 	// sessionLifeTime : 30, 
 	// sessionRefreshTime : 20,
