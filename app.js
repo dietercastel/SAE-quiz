@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var users = require('./routes/users');
 var highscores = require('./routes/highscores');
 var quiz = require('./routes/quiz'); 
+//		TODO: update Reference to CouchDB instance!!
 var nano = require('nano')('http://localhost:5984');
 //Other requires ...
 var express = require('express');
@@ -31,7 +32,9 @@ function failedAuth(req,res){
 	res.redirect("/sae#/login");
 	return;
 }
+//TODO:include either the directory or the npm module.
 var sae = require('../Sec-Angular-Express/SAE')(opt);
+// var sae = require('sec-Angular-Express)(opt); //include npm module
 sae.configure(app);
 //Other app configuration...
 
@@ -57,11 +60,11 @@ app.use(function(req, res, next){
 app.all('*', function(req, res, next) {
         //Set Access control allow origin header to allow vagrant sharing.
         // res.header("Access-Control-Allow-Origin", "self");
-        res.header("Access-Control-Allow-Origin", "http://www.dietercastel.com");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-		res.header("Access-Control-Allow-Credentials","true");
-		res.header("Access-Control-Allow-Credentials", "true");
-		res.header("Vary","Accept-Encoding, Origin");
+        // res.header("Access-Control-Allow-Origin", "http://www.dietercastel.com");
+        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		// res.header("Access-Control-Allow-Credentials","true");
+		// res.header("Access-Control-Allow-Credentials", "true");
+		// res.header("Vary","Accept-Encoding, Origin");
 
 		// Worked after second reload...
 		// res.header("X-EPR","1");
