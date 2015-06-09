@@ -14,7 +14,7 @@
     "serve-favicon": "~2.1.3",
     "debug": "~2.0.0",
     "ejs": "~0.8.5",
-    "client-session": "~0.1.7",
+    "client-session": "~0.1.7"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "^0.11.1",
